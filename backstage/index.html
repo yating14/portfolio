@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="sidebar">
+        <ul class="menu">
+            <li class="parent">
+                <span>單位管理</span>
+                <ul class="submenu">
+                    <li><a href="unit_review.php" target="content">待審核</a></li>
+                    <li><a href="unit_list.php">單位列表</a></li>
+                </ul>
+                <hr>
+            </li>
+            <li class="parent">
+                <span>志工管理</span>
+                <ul class="submenu">
+                     <li><a href="volunteer_list.php">志工列表</a></li>
+                    <li><a href="volunteer_blacklist.php">黑名單</a></li>
+                </ul>
+                <hr>
+            </li>
+            <li class="parent">
+                <span>活動管理</span>
+                <ul class="submenu">
+                    <!-- <li><a href="activity_review.php">待審核</a></li> -->
+                    <li><a href="activity_list.php">活動列表</a></li>
+                </ul>
+                <hr>
+            </li>
+            <!-- <li class="parent">
+                <span>時數管理</span>
+                <ul class="submenu">
+                    <li><a href="#">時數審核</a></li>
+                    <li><a href="#">時數紀錄</a></li>
+                </ul>
+                <hr>
+            </li> -->
+            <li class="parent">
+                <span>評價管理</span>
+                <ul class="submenu">
+                    <li><a href="volunteer_evaluation.php">所有志工評價</a></li>
+                    <li><a href="volunteer_share.php">志工分享</a></li>
+                </ul>
+                <hr>
+            </li>
+            <li class="parent">
+                <span>常見問題管理</span>
+                <ul class="submenu">
+                    <li><a href="question.php">常見問題</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <div class="content"  id="content">
+    </div>
+
+
+    <!-- JavaScript 代碼 -->
+    <script>
+        // 選取所有連結
+        const links = document.querySelectorAll('.menu a');
+        
+        // 獲取內容區域元素
+        const contentDiv = document.getElementById('content');
+        
+        // 對所有連結設置點擊事件處理
+        links.forEach(link => {
+            link.addEventListener('click', function(event) {
+                event.preventDefault(); // 阻止連結的默認行為
+                
+                // 獲取連結的目標 URL
+                const targetHref = this.getAttribute('href');
+                
+                // 使用目標 URL 載入內容
+                loadContent(targetHref);
+            });
+        });
+
+        // 通過 URL 載入內容並插入到內容區域
+        function loadContent(targetHref) {
+            fetch(targetHref)
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('content').innerHTML = data;
+                })
+                .catch(error => {
+                    console.error('Error loading content:', error);
+                });
+        }
+
+        // 阻止表單的默認提交行為
+        function searchVolunteers(event) {
+        event.preventDefault(); 
+        
+        const form = event.target; // 獲取被提交的表單
+        const formData = new FormData(form); // 獲取表單的數據
+        
+        // 將表單數據序列化為查詢字串
+        const searchParams = new URLSearchParams(formData);
+        const searchUrl = form.action + '?' + searchParams.toString();
+        
+        // 使用 fetch 載入搜尋結果的內容
+        fetch(searchUrl)
+            .then(response => response.text())
+            .then(data => {
+                contentDiv.innerHTML = data; // 將內容插入內容區域
+            })
+            .catch(error => {
+                console.error('Error loading content:', error);
+            });
+        }
+ 
+        // 讓按下核可後可以正確跳回待審核
+        // 这段代码用于解析URL中的哈希标记（例如#content）
+        function getHashParams() {
+            const hashParams = {}; // 创建一个空对象来存储解析的哈希参数
+            const hash = window.location.hash.substr(1); // 获取URL中的哈希部分，并去掉开头的 '#' 符号
+            const params = hash.split('&'); // 将哈希部分拆分成参数数组
+            params.forEach(param => {
+                const [key, value] = param.split('='); // 将参数拆分成键值对
+                hashParams[key] = value; // 将键值对添加到 hashParams 对象中
+            });
+            return hashParams; // 返回包含解析的哈希参数的对象
+        }
+        // 检查URL中是否有哈希标记，并执行相关操作
+        function checkHash() {
+            const hashParams = getHashParams(); // 获取解析的哈希参数
+            if (hashParams && hashParams.action === 'open_volunteer_review') {
+                // 如果哈希参数包含名为 'action' 且值为 'open_volunteer_review'
+                // 执行打开待审核的操作
+                loadContent('volunteer_review.php'); // 调用 loadContent 函数加载特定内容
+            }
+        }
+        // 在页面加载完毕时检查哈希标记
+        window.addEventListener('load', checkHash); // 添加事件监听器，等待页面加载完成后执行 checkHash 函数
+
+
+    </script>
+
+</body>
+</html>
