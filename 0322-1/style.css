@@ -1,0 +1,190 @@
+body{
+    margin: 0;
+}
+.header{  
+    background-color: black;
+    height: 30px;
+    color: white;
+    font-size: 12px;
+    line-height: 30px;
+    /* 標頭的區域 */
+}
+.h a:link{
+    color: #FFF;
+    text-decoration: none;
+    line-height: 30px;
+    /* 標頭的超連結 */
+}
+.h a:hover{
+    text-decoration: underline;
+    color: #FFF;
+    line-height: 30px;
+    /* 標頭超連結的顯示 */
+}
+.h{
+    color: #FFF;
+    width: 945px;
+    margin: 0 auto;
+    /* 標頭裡的字 */
+}
+.left{
+    float: left;
+    /* 靠左 */
+}
+.right{
+    float: right;
+    /* 靠右 */
+}
+.navbar{
+    margin: 0 auto;
+    padding: 20px 0px;
+    background-color: white;
+    height: 150px;
+    width: 945px;
+    z-index: 2;
+    /* 目錄的區域 */
+}
+.nav{
+    margin: 0 auto;
+    width: 945px;
+    position: absolute;
+}
+.hr{
+    width: 945px;
+    margin: 0 auto;
+    padding: 0px;
+}
+.rotation{
+    z-index: 1;
+    margin: 0 auto;
+    height: 330px;
+    width: 945px;
+    /* 輪轉的區域 */
+}
+.news{
+    margin: 0 auto;
+    height: 470px;
+    width: 945px;
+}
+.leftsidebar{
+    margin: 55px 0 0 0;
+    height: 316px;
+    width: 253px;
+    /* background-color: brown; */
+    float: left;
+    border-right: #000 solid 1px;
+}
+#ls tr td{
+    border-bottom: solid #000  1px;
+}
+.centersidebar{
+    margin: 55px 0 0 30px;
+    height: 316px;
+    width: 490px;
+    float: left;
+}
+.cs{
+    margin: 4px;
+    width: 148px;
+    height: 311px;
+    background-color: #FFF;
+    z-index: 2;
+    display: inline-table;
+    border: #000 solid 1px;
+    padding: 5px;
+}
+.rightsidebar{
+    margin: 55px 0 0 10px;
+    height: 378px;
+    width: 158px;
+    float: right;
+}
+.rside img{
+    padding: 4px 0px 4px 0px;
+}
+/* .rside #r1:hover{
+    display: none;
+}
+.rside #h1{
+    display: none;
+} */
+.link{
+    margin: 0 auto;
+    height: 496px;
+    width: 945px;
+    border-top: dotted;
+}
+td{
+    padding: 5px 10px;
+    font-size: 12px;
+}
+#link{
+    padding: 15px;
+}
+.footer{
+    height: 50px;
+    background-color:black;
+    color: white;
+    font-size: 12px;
+    text-align: center;
+    line-height: 50px;
+}
+a:link{
+    text-decoration: none;
+    /* 底線不顯示 */
+}
+.drop li:hover{
+    text-decoration: underline;
+    color: black;
+    /* 滑過出現底線 */
+}
+.drop:hover ul{
+    display: block;
+    /* 顯示下拉選單 */
+}
+.menu{
+    position: absolute;
+    top: 50px;
+    right: 0px;
+    /* 對齊位置 */
+}
+.menu li{
+    display: inline-table;
+    max-inline-size: 100%;
+    border: #000 solid;
+    /* 橫向排列 */
+}
+.menu ul{
+    display: none;
+    /* 隱藏下拉選單 */
+}
+.drop ul{
+    padding-left: 0;
+    width: 96px;
+    font-size: 13px;
+    color: #000;
+    /* 調整下拉選單的顯示 */
+}
+.drop li{
+    background-color: rgb(243, 243, 243);
+    opacity: 0.9;
+    padding:3px 0px 3px 10px;
+    width: 96px;
+    /* 調整下拉選單內容的顯示 */
+}
+.drop a{
+    color: black;
+}
+.link a{
+    font-size: 10px;
+    color: #000;
+}
+.carousel-inner img{
+    height: 330px;
+    width: 945px;
+    /* 輪播圖大小 */
+}
+#tlink tr td{
+    border-bottom: 1px dotted #000;  
+}
+
